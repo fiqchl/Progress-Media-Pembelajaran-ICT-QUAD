@@ -2,7 +2,7 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "62qAPI5C3Wn":
+      case "6IEgX1Nywb2":
         Script1();
         break;
   }
@@ -22,6 +22,7 @@ var db = {
   "230311606367": "Willyam",
   "230311601708": "Miftachul",
   "230311605143": "Salsabilla",
+  "230311605691": "Dhadya",
   // Tambahkan baris lainnya...
 };
 
