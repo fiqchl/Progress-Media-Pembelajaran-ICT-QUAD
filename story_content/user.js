@@ -2,10 +2,10 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "5uzdg6PaLCe":
+      case "6aVk67jeobr":
         Script1();
         break;
-      case "5Wboq7lIKr3":
+      case "6PoaFuGOZfO":
         Script2();
         break;
   }
@@ -14,22 +14,30 @@ function ExecuteScript(strId)
 function Script1()
 {
   (function () {
-  var url = "https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3"; // ganti dgn URL mp3 kamu
-  var topDoc = window.top && window.top.document ? window.top.document : document;
-  var id = "bgmAudioGlobal";
-  var el = topDoc.getElementById(id);
+  var URL = "https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3"; // ganti URL kamu
+  var d = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById("bgmAudioGlobal");
 
   if (!el) {
-    el = topDoc.createElement("audio");
-    el.id = id;
-    el.src = url;
+    el = d.createElement("audio");
+    el.id = "bgmAudioGlobal";
+    el.src = URL;
     el.loop = true;
-    el.volume = 0.15; // 0.0–1.0 (15% supaya tidak mengganggu)
-    // Opsional: el.setAttribute("controls", ""); // kalau mau tes ada kontrolnya
-    topDoc.body.appendChild(el);
+    el.volume = 0.5;               // 0.0–1.0
+    el.preload = "auto";
+    el.setAttribute("playsinline","");   // penting untuk iOS
+    d.body.appendChild(el);
   }
-  // Autoplay butuh gestur user — klik tombol ini memenuhi syarat
-  el.play().catch(function(){ /* diamkan error autoplay */ });
+
+  // Coba play pada gesture klik ini
+  var p = el.play && el.play();
+  if (p && p.catch) {
+    p.catch(function(err){
+      // Jika masih diblokir, minta ketuk lagi (jarang terjadi setelah pakai jeda)
+      console.log("Audio play blocked:", err);
+      // alert("Ketuk sekali lagi untuk mengaktifkan audio."); // aktifkan kalau perlu
+    });
+  }
 })();
 
 }
