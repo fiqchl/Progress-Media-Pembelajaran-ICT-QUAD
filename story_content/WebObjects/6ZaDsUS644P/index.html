@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desmos Persist</title>
+  <style>html,body,#calc{height:100%;margin:0}</style>
+  <script src="https://www.desmos.com/api/v1.10/calculator.js?apiKey=desmos-api-key"></script>
+</head>
+<body>
+  <div id="calc"></div>
+  <script>
+    const DEFAULT_KEY="desmos_state_quadrat";
+    const p=new URLSearchParams(location.search);
+    const STORAGE_KEY=p.get("key")||DEFAULT_KEY;
+
+    const Calc=Desmos.GraphingCalculator(document.getElementById("calc"),{
+      keypad:true, expressions:true, settingsMenu:true, zoomButtons:true
+    });
+
+    try{
+      const raw=localStorage.getItem(STORAGE_KEY);
+      if(raw){ Calc.setState(JSON.parse(raw)); }
+      else { Calc.setExpression({id:'f',latex:'f(x)=x^2'}); }
+    }catch(e){}
+
+    const save=()=>{ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(Calc.getState())); }catch(e){} };
+    Calc.observeEvent('change', save);
+    window.addEventListener('beforeunload', save);
+    document.addEventListener('visibilitychange', ()=>{ if(document.hidden) save(); });
+  </script>
+</body>
+</html>
