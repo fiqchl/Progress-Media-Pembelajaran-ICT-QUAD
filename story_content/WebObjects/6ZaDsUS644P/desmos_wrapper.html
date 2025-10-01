@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desmos Persist</title>
+  <style>
+    html,body,#calc { height:100%; margin:0; }
+    /* opsional: font kecil agar panel muat */
+    body { font-family: system-ui, sans-serif; }
+  </style>
+  <!-- API Desmos (HTTPS) -->
+  <script src="https://www.desmos.com/api/v1.10/calculator.js?apiKey=desmos-api-key"></script>
+</head>
+<body>
+  <div id="calc"></div>
+
+  <script>
+    // ====== Konfigurasi kecil ======
+    // 1) GANTI key ini jika dipakai di slide lain, supaya state tiap slide terpisah.
+    //    Mis. "desmos_state_quadrat" / "desmos_state_scene5"
+    const DEFAULT_KEY = "desmos_state_quadrat";
+
+    // 2) Kalau ingin key-nya dinamis (mis. per-siswa), kirim query ?key=... dari Storyline (lihat catatan di bawah).
+    const params = new URLSearchParams(location.search);
+    const STORAGE_KEY = params.get("key") || DEFAULT_KEY;
+
+    // 3) Opsi tampilan
+    const options = {
+      keypad: true,
+      expressions: true,
+      settingsMenu: true,
+      zoomButtons: true,
+      expressionsCollapsed: false
+    };
+
+    // ====== Inisialisasi ======
+    const elt = document.getElementById("calc");
+    const Calc = Desmos.GraphingCalculator(elt, options);
+
+    // Restore state jika ada
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        Calc.setState(JSON.parse(raw));
+      } else {
+        // contoh awal (boleh dihapus/ganti)
+        Calc.setExpression({ id: 'f', latex: 'f(x)=x^2' });
+      }
+    } catch(e){ /* abaikan */ }
+
+    // Simpan state setiap ada perubahan
+    const save = () => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(Calc.getState()));
+      } catch(e){ /* quota penuh: abaikan */ }
+    };
+    Calc.observeEvent('change', save);
+
+    // Jaga-jaga: simpan saat keluar iframe
+    window.addEventListener('beforeunload', save);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) save(); });
+  </script>
+</body>
+</html>
