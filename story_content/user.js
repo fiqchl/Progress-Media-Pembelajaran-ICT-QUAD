@@ -2,25 +2,25 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6k8khUwc9zv":
+      case "5x4QRp3yEgL":
         Script1();
         break;
-      case "5raPIK9szta":
+      case "5sEZGnKTETE":
         Script2();
         break;
-      case "6oZPCbv4Zyg":
+      case "6Iqq2Vgub5g":
         Script3();
         break;
-      case "6OfbjTTTfXE":
+      case "5nV2t6hmHGm":
         Script4();
         break;
-      case "6XeZnb3UG8e":
+      case "6Nd0WHJayl4":
         Script5();
         break;
-      case "68MyIMM4P1D":
+      case "64SsJt623v1":
         Script6();
         break;
-      case "5nzsX5XGBTe":
+      case "5vS0GJcuPrF":
         Script7();
         break;
   }
@@ -172,7 +172,7 @@ function Script3()
 /* Kunci koefisien a untuk 4 baris (boleh desimal).
    Contoh: [1, -3, 0.5, -2]
 */
-var expectedA = [1, 3, -1, -3];
+var expectedA = [1, -1, 3, -3];
 
 /* Jika kamu ingin arah buka diturunkan dari tanda a (a>0 → atas, a<0 → bawah),
    biarkan expectedDir = null. 
