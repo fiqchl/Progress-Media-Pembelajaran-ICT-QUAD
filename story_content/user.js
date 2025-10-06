@@ -2,29 +2,26 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6WqyLsAbRw6":
+      case "5raS1SDF9mI":
         Script1();
         break;
-      case "60rUZB2wUxg":
+      case "6jjcElxov05":
         Script2();
         break;
-      case "5zd7FCMCatV":
+      case "6704wuOK9RG":
         Script3();
         break;
-      case "63JRvU4BiaT":
+      case "5rZTN9fSmHh":
         Script4();
         break;
-      case "6LAAgrH6S9v":
+      case "63RuhJoShli":
         Script5();
         break;
-      case "6UCQmzls2QZ":
+      case "6FYskO8lKc7":
         Script6();
         break;
-      case "5wW6zWmcYx0":
+      case "5qKHEdPVW3k":
         Script7();
-        break;
-      case "5xKiuzANMo4":
-        Script8();
         break;
   }
 }
@@ -402,14 +399,14 @@ function Script6()
 
 function Script7()
 {
+  (function(){
   var p = GetPlayer();
 
-// 1) Ambil NIS dari Storyline
-var nis = (p.GetVar("vNIS") || "").trim();
-// Jika NIS selalu angka, kamu bisa normalisasi: nis = nis.replace(/\D/g,"");
+  // --- ambil NIS ---
+  var nis  = (p.GetVar("vNIS") || "").trim();
 
-// 2) Tabel NIS → Nama (ISI SENDIRI)
-var db = {
+  // --- DB NIS -> Nama (ISI SENDIRI) ---
+  var db = {
   "230311606529": "Taufiq",
   "230311606367": "Willyam",
   "230311601708": "Miftachul",
@@ -450,42 +447,34 @@ var db = {
   "230311605256": "Veronika",
   "230311605802": "Widigda",
   "230311600278": "Zahrotul",
-  "230311609690": "Zalfa",
-  // Tambahkan baris lainnya...
-};
+  "230311609690": "Zalfa"
+  };
 
-// 3) Lookup
-var nama = db[nis] || "";
+  // --- lookup ---
+  var nama  = db[nis] || "";
+  var found = !!nama;
 
-// 4) Kembalikan ke variabel Storyline
-p.SetVar("vNama", nama);
-p.SetVar("vFound", !!nama);
-}
+  // kembalikan ke Storyline
+  p.SetVar("vNama",  nama);
+  p.SetVar("vFound", found);
 
-function Script8()
-{
-  (function(){
-  var p = GetPlayer();
-  var URL   = 'https://script.google.com/macros/s/AKfycbx3MvIazCxQH_hxspHhePtQwNlNWUaBotyN0rW7o9LBruyjE6trhyyZp8nmOe2id-QAJg/exec';  // contoh: https://script.google.com/macros/s/AKfycbx.../exec
-  var TOKEN = 'tok_5Qk9mH0vYw2_L1pZr8'; // sama dengan SECRET di Apps Script
-
-  var nim  = (p.GetVar('vNIS')  || '').trim();  // ganti jika nama variabelmu beda
-  var nama = (p.GetVar('vNama') || '').trim();  // kalau tidak punya nama, biarkan ''
+  // --- logging ke Google Sheets (opsional: catat juga kasus gagal) ---
+  var URL   = "https://script.google.com/macros/s/AKfycbx3MvIazCxQH_hxspHhePtQwNlNWUaBotyN0rW7o9LBruyjE6trhyyZp8nmOe2id-QAJg/exec";
+  var TOKEN = "'tok_5Qk9mH0vYw2_L1pZr8'";
 
   var payload = {
     token: TOKEN,
-    nim: nim,
-    nama: nama,
-    event: 'login',       // contoh event
-    slide: 'Halaman Login',
-    ua: navigator.userAgent
+    nim:   nis,
+    nama:  nama,
+    event: found ? "login" : "login_failed",
+    slide: "Halaman Login",
+    ua:    navigator.userAgent
   };
 
-  // kirim; no-cors supaya tak terganjal CORS (response tak bisa dibaca—cukup untuk logging)
   fetch(URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {'Content-Type':'application/json'},
+    method: "POST",
+    mode: "no-cors",
+    headers: {"Content-Type":"application/json"},
     body: JSON.stringify(payload)
   }).catch(function(){});
 })();
