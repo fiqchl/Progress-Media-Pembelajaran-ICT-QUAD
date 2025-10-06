@@ -2,25 +2,25 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "5raS1SDF9mI":
+      case "6PKjK8ucVIz":
         Script1();
         break;
-      case "6jjcElxov05":
+      case "6kX3KH17avx":
         Script2();
         break;
-      case "6704wuOK9RG":
+      case "5cRi2HZIdL8":
         Script3();
         break;
-      case "5rZTN9fSmHh":
+      case "5XdC2ZT5Xhr":
         Script4();
         break;
-      case "63RuhJoShli":
+      case "5pkucTnDO8B":
         Script5();
         break;
-      case "6FYskO8lKc7":
+      case "5rjAjGRqaZK":
         Script6();
         break;
-      case "5qKHEdPVW3k":
+      case "6S9U4vPT8EI":
         Script7();
         break;
   }
@@ -460,7 +460,7 @@ function Script7()
 
   // --- logging ke Google Sheets (opsional: catat juga kasus gagal) ---
   var URL   = "https://script.google.com/macros/s/AKfycbx3MvIazCxQH_hxspHhePtQwNlNWUaBotyN0rW7o9LBruyjE6trhyyZp8nmOe2id-QAJg/exec";
-  var TOKEN = "'tok_5Qk9mH0vYw2_L1pZr8'";
+  var TOKEN = "tok_5Qk9mH0vYw2_L1pZr8";
 
   var payload = {
     token: TOKEN,
