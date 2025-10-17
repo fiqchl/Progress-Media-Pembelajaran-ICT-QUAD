@@ -2,41 +2,38 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6Pi9b9Wd32b":
+      case "6UoUryvwmyO":
         Script1();
         break;
-      case "6f3nFXROBRR":
+      case "6Akt1CSdhjG":
         Script2();
         break;
-      case "613yrodmNWo":
+      case "6Pr7tbupX6t":
         Script3();
         break;
-      case "6RlK5TOoVn7":
+      case "6aeYYuMhleh":
         Script4();
         break;
-      case "6YzD5im2auy":
+      case "6IWVQp5dcpr":
         Script5();
         break;
-      case "64BUSVhIkK3":
+      case "655JJ6DHHrN":
         Script6();
         break;
-      case "65hpefLAjv2":
+      case "6X5ppPtXFtE":
         Script7();
         break;
-      case "6NueLSMVlf0":
+      case "5Xk9pETOdJt":
         Script8();
         break;
-      case "6abg8xGxe0y":
+      case "6CCt9YdQCkD":
         Script9();
         break;
-      case "5tPeUMDAV4p":
+      case "5j8N4dfiYbV":
         Script10();
         break;
-      case "6lm6jgTvS4j":
+      case "5s1DclBrZtG":
         Script11();
-        break;
-      case "5V4nFNVB6cu":
-        Script12();
         break;
   }
 }
@@ -216,6 +213,41 @@ function Script3()
 
 function Script4()
 {
+  (function(){
+  var p = GetPlayer();
+
+  function ensureFS(cb){
+    if (window._fbReady) { cb(); return; }
+    var s=document.createElement('script'); s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';
+    s.onload=cb; document.head.appendChild(s);
+  }
+
+  var name = (p.GetVar('vNama')||'').trim();
+  var key  = (p.GetVar('vNameKey')||name.toLowerCase());
+
+  var boolVars = ['vMateri1','vMateri2','vMateri2a','vMateri2c','vMateri3','vMateri4','vMateri5'];
+  var textVars = [
+    'vTabelDiskriminan11','vTabelDiskriminan12','vTabelDiskriminan21','vTabelDiskriminan22','vTabelDiskriminan31','vTabelDiskriminan32',
+    'vTabelKoefisienA11','vTabelKoefisienA12','vTabelKoefisienA21','vTabelKoefisienA22','vTabelKoefisienA31','vTabelKoefisienA32','vTabelKoefisienA41','vTabelKoefisienA42',
+    'vTabelKoefisienC11','vTabelKoefisienC12','vTabelKoefisienC21','vTabelKoefisienC22','vTabelKoefisienC31','vTabelKoefisienC32'
+  ];
+
+  var state = {};
+  boolVars.forEach(k=>state[k] = !!p.GetVar(k));
+  textVars.forEach(k=>state[k] = String(p.GetVar(k) || ''));
+
+  try{ localStorage.setItem('state_'+key, JSON.stringify(state)); }catch(e){}
+
+  ensureFS(function(){
+    var db  = firebase.firestore();
+    var ref = db.collection('progress').doc(key);
+    ref.set({ name:name, state:state, updated: firebase.firestore.FieldValue.serverTimestamp() }, { merge:true });
+  });
+})();
+}
+
+function Script5()
+{
   var p = GetPlayer();
 
 /* ======== ANSWER KEY (EDIT DI SINI) ======== */
@@ -303,7 +335,7 @@ p.SetVar("vAllValid_1", wrong.length === 0);
 p.SetVar("vWrongList_1", wrong.join(", "));
 }
 
-function Script5()
+function Script6()
 {
   var p = GetPlayer();
 
@@ -376,41 +408,6 @@ for (var i=0; i<3; i++){
 // Kembalikan hasil ke Storyline
 p.SetVar("vAllValid_3", wrong.length === 0);
 p.SetVar("vWrongList_3", wrong.join(", "));
-}
-
-function Script6()
-{
-  (function(){
-  var p = GetPlayer();
-
-  function ensureFS(cb){
-    if (window._fbReady) { cb(); return; }
-    var s=document.createElement('script'); s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';
-    s.onload=cb; document.head.appendChild(s);
-  }
-
-  var name = (p.GetVar('vNama')||'').trim();
-  var key  = (p.GetVar('vNameKey')||name.toLowerCase());
-
-  var boolVars = ['vMateri1','vMateri2','vMateri2a','vMateri2c','vMateri3','vMateri4','vMateri5'];
-  var textVars = [
-    'vTabelDiskriminan11','vTabelDiskriminan12','vTabelDiskriminan21','vTabelDiskriminan22','vTabelDiskriminan31','vTabelDiskriminan32',
-    'vTabelKoefisienA11','vTabelKoefisienA12','vTabelKoefisienA21','vTabelKoefisienA22','vTabelKoefisienA31','vTabelKoefisienA32','vTabelKoefisienA41','vTabelKoefisienA42',
-    'vTabelKoefisienC11','vTabelKoefisienC12','vTabelKoefisienC21','vTabelKoefisienC22','vTabelKoefisienC31','vTabelKoefisienC32'
-  ];
-
-  var state = {};
-  boolVars.forEach(k=>state[k] = !!p.GetVar(k));
-  textVars.forEach(k=>state[k] = String(p.GetVar(k) || ''));
-
-  try{ localStorage.setItem('state_'+key, JSON.stringify(state)); }catch(e){}
-
-  ensureFS(function(){
-    var db  = firebase.firestore();
-    var ref = db.collection('progress').doc(key);
-    ref.set({ name:name, state:state, updated: firebase.firestore.FieldValue.serverTimestamp() }, { merge:true });
-  });
-})();
 }
 
 function Script7()
@@ -525,42 +522,6 @@ function Script9()
 
 function Script10()
 {
-  (function(){
-  var p = GetPlayer();
-
-  function ensureFS(cb){
-    if (window._fbReady) { cb(); return; }
-    var s=document.createElement('script'); s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';
-    s.onload=cb; document.head.appendChild(s);
-  }
-
-  var name = (p.GetVar('vNama')||'').trim();
-  var key  = (p.GetVar('vNameKey')||name.toLowerCase());
-
-  var boolVars = ['vMateri1','vMateri2','vMateri2a','vMateri2c','vMateri3','vMateri4','vMateri5'];
-  var textVars = [
-    'vTabelDiskriminan11','vTabelDiskriminan12','vTabelDiskriminan21','vTabelDiskriminan22','vTabelDiskriminan31','vTabelDiskriminan32',
-    'vTabelKoefisienA11','vTabelKoefisienA12','vTabelKoefisienA21','vTabelKoefisienA22','vTabelKoefisienA31','vTabelKoefisienA32','vTabelKoefisienA41','vTabelKoefisienA42',
-    'vTabelKoefisienC11','vTabelKoefisienC12','vTabelKoefisienC21','vTabelKoefisienC22','vTabelKoefisienC31','vTabelKoefisienC32'
-  ];
-
-  var state = {};
-  boolVars.forEach(k=>state[k] = !!p.GetVar(k));
-  textVars.forEach(k=>state[k] = String(p.GetVar(k) || ''));
-
-  try{ localStorage.setItem('state_'+key, JSON.stringify(state)); }catch(e){}
-
-  ensureFS(function(){
-    var db  = firebase.firestore();
-    var ref = db.collection('progress').doc(key);
-    ref.set({ name:name, state:state, updated: firebase.firestore.FieldValue.serverTimestamp() }, { merge:true });
-  });
-})();
-
-}
-
-function Script11()
-{
   (function () {
   var URL = "https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3"; // ganti URL kamu
   var d = (window.top && window.top.document) ? window.top.document : document;
@@ -590,7 +551,7 @@ function Script11()
 
 }
 
-function Script12()
+function Script11()
 {
   (function(){
   var p = GetPlayer();
