@@ -2,53 +2,56 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6Mb4FeLTN10":
+      case "6WSGqAFBMvT":
         Script1();
         break;
-      case "63gjQ6uL6aX":
+      case "6nT6uJ7OTXB":
         Script2();
         break;
-      case "6oy0dDhmtbn":
+      case "67L9SYd8zU0":
         Script3();
         break;
-      case "5nsqIe3dNHT":
+      case "61BoTnYJac6":
         Script4();
         break;
-      case "6ZbKdGrR7Jr":
+      case "5iuHOk0bpox":
         Script5();
         break;
-      case "5dFx3lYx9iF":
+      case "6dZSXmJABfT":
         Script6();
         break;
-      case "6OBcHASCbPd":
+      case "5enWKGARzgM":
         Script7();
         break;
-      case "6ZQGgwwv57S":
+      case "6nrtNnxrOO7":
         Script8();
         break;
-      case "6Xxz7qrZBGU":
+      case "5Zr85kpfh0o":
         Script9();
         break;
-      case "5W58jtqKOnK":
+      case "6ZqqlDIE9F9":
         Script10();
         break;
-      case "6KBBQPYVI3n":
+      case "5wgfYspLEYg":
         Script11();
         break;
-      case "6PituZs5qpL":
+      case "6T35gT82oYk":
         Script12();
         break;
-      case "6fjpNSl5B9w":
+      case "6kCFjAjpc8b":
         Script13();
         break;
-      case "6TX9hjBr5CM":
+      case "67wWLA5NU24":
         Script14();
         break;
-      case "64vbwv2zjI9":
+      case "62WCFVNpDNg":
         Script15();
         break;
-      case "5jNv2c3awfz":
+      case "68xsHSQ485r":
         Script16();
+        break;
+      case "6YWCuJ7Ysgp":
+        Script17();
         break;
   }
 }
@@ -823,6 +826,36 @@ function Script15()
 }
 
 function Script16()
+{
+  (function(){
+  var d = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');      // dibuat di tombol Next slide awal
+  if (!el) {
+    // fallback kalau user masuk langsung ke slide ini (jarang)
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(e){ /* autoplay blocked? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
+}
+
+function Script17()
 {
   (function(){
   var p = GetPlayer();
