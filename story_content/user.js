@@ -2,62 +2,59 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6W1TgXmafP0":
+      case "6STPd52S01f":
         Script1();
         break;
-      case "6jj23d4UvRJ":
+      case "5nkBVA0q2lh":
         Script2();
         break;
-      case "66X1a4P7PzQ":
+      case "5WDFZrGA2rC":
         Script3();
         break;
-      case "6i5QyEzwbwz":
+      case "5haMB4WhBZx":
         Script4();
         break;
-      case "5fDfCkDWLdH":
+      case "5oYrUcevsUO":
         Script5();
         break;
-      case "6JQ2lh0fqxQ":
+      case "601SLBejZKO":
         Script6();
         break;
-      case "65Mi3lb8C2w":
+      case "5sZS7a6KO7A":
         Script7();
         break;
-      case "65SmtLZTa40":
+      case "6rgRg6tTs7W":
         Script8();
         break;
-      case "5ch1IAKf7c7":
+      case "674A1Hs0knW":
         Script9();
         break;
-      case "66LEGFd0IwQ":
+      case "6oCLTaBDk6I":
         Script10();
         break;
-      case "5pk30cmrrzM":
+      case "68zTGc9mwPL":
         Script11();
         break;
-      case "6oU1v1nqbTQ":
+      case "5zr9hH8I1nA":
         Script12();
         break;
-      case "6c9BuT9ZZIE":
+      case "5VQCWTrxijQ":
         Script13();
         break;
-      case "5fvVvCP62Uh":
+      case "6LZVHLza33p":
         Script14();
         break;
-      case "6CbmPE9P8Wt":
+      case "5vPO5hOli5e":
         Script15();
         break;
-      case "5Y0SirxYAPz":
+      case "5r7j8D8mTbA":
         Script16();
         break;
-      case "6CS64UJMnp9":
+      case "5e8MifLAReK":
         Script17();
         break;
-      case "638VwMCWmzX":
+      case "6EwCbcxOS7u":
         Script18();
-        break;
-      case "6TY3VnnZG6x":
-        Script19();
         break;
   }
 }
@@ -807,31 +804,6 @@ function Script14()
 
 function Script15()
 {
-  (function(){
-  window.PROGRESS_SCHEMA = {
-    boolVars: [
-      'vMateri1','vMateri2','vMateri2a','vMateri2c','vMateri3','vMateri4','vMateri5'
-      // taruh variabel boolean baru di sini, mis. 'vMateri6'
-    ],
-    textVars: [
-      // Diskriminan
-      'vTabelDiskriminan11','vTabelDiskriminan12','vTabelDiskriminan21','vTabelDiskriminan22','vTabelDiskriminan31','vTabelDiskriminan32',
-      // Koefisien A
-      'vTabelKoefisienA11','vTabelKoefisienA12','vTabelKoefisienA21','vTabelKoefisienA22','vTabelKoefisienA31','vTabelKoefisienA32','vTabelKoefisienA41','vTabelKoefisienA42',
-      // Koefisien C
-      'vTabelKoefisienC11','vTabelKoefisienC12','vTabelKoefisienC21','vTabelKoefisienC22','vTabelKoefisienC31','vTabelKoefisienC32',
-      // Jawaban & kesimpulan
-      'vJawabanDiskriminan1','vJawabanDiskriminan2','vJawabanDiskriminan3',
-      'vJawabanKoefisienA1','vJawabanKoefisienA2',
-      'vKesimpulanDiskriminan','vKesimpulanKoefisienA','vKesimpulanKoefisienC'
-      // taruh variabel text baru di sini, mis. 'vCatatanTambahan'
-    ]
-  };
-})();
-}
-
-function Script16()
-{
   (function () {
   var URL = "https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3"; // ganti URL kamu
   var d = (window.top && window.top.document) ? window.top.document : document;
@@ -859,6 +831,36 @@ function Script16()
   }
 })();
 
+}
+
+function Script16()
+{
+  (function(){
+  var d = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');      // dibuat di tombol Next slide awal
+  if (!el) {
+    // fallback kalau user masuk langsung ke slide ini (jarang)
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(e){ /* autoplay blocked? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
 }
 
 function Script17()
@@ -892,36 +894,6 @@ function Script17()
 }
 
 function Script18()
-{
-  (function(){
-  var d = (window.top && window.top.document) ? window.top.document : document;
-  var el = d.getElementById('bgmAudioGlobal');      // dibuat di tombol Next slide awal
-  if (!el) {
-    // fallback kalau user masuk langsung ke slide ini (jarang)
-    el = d.createElement('audio');
-    el.id = 'bgmAudioGlobal';
-    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
-    el.loop = true;
-    el.volume = 0.5;
-    el.preload = 'auto';
-    el.setAttribute('playsinline','');
-    d.body.appendChild(el);
-  }
-
-  var on = !!GetPlayer().GetVar('vBGMOn');
-  try {
-    if (on) {
-      el.muted = false;
-      var p = el.play();
-      if (p && p.catch) p.catch(function(e){ /* autoplay blocked? klik berikutnya akan jalan */ });
-    } else {
-      el.pause();
-    }
-  } catch(e){}
-})();
-}
-
-function Script19()
 {
   (function(){
   var p = GetPlayer();
