@@ -2,55 +2,97 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6rTBR5V2dsE":
+      case "5tiLfGN9zlZ":
         Script1();
         break;
-      case "6Bhs5lguZrq":
+      case "6VqVypU9dY7":
         Script2();
         break;
-      case "6eH0zH3DiMF":
+      case "6WiIsX1sHvR":
         Script3();
         break;
-      case "6SScXZxcvzd":
+      case "5vJCTEFjfFm":
         Script4();
         break;
-      case "5yQuI4gYfXd":
+      case "6cJcCUS1upL":
         Script5();
         break;
-      case "6Vmf7QttNxT":
+      case "6UaHOSBY1q0":
         Script6();
         break;
-      case "5joCSIJQTZy":
+      case "5k3T7uJmkh7":
         Script7();
         break;
-      case "670x0BN7iUs":
+      case "6auasYaRtZq":
         Script8();
         break;
-      case "5bEVZsyoqDe":
+      case "6PmMk6cJI5P":
         Script9();
         break;
-      case "6HjGQvpGN1A":
+      case "6KeHXWtUFpi":
         Script10();
         break;
-      case "5ZcIvwUEmXe":
+      case "5wT7blYvsEm":
         Script11();
         break;
-      case "5uevwUfYmoz":
+      case "5aGDJxcEeMN":
         Script12();
         break;
-      case "6XpnhHGevEe":
+      case "65pCRToFPgD":
         Script13();
         break;
-      case "6QG5WVLBYlY":
+      case "6LR55LWO7pY":
         Script14();
         break;
-      case "6AyiVIdf6mJ":
+      case "6iJxfPbftCe":
         Script15();
+        break;
+      case "6SjDCkdYVtL":
+        Script16();
+        break;
+      case "5WF9eUTDIib":
+        Script17();
+        break;
+      case "6qQq7NzkX2R":
+        Script18();
+        break;
+      case "5k8K6okUP6v":
+        Script19();
         break;
   }
 }
 
 function Script1()
+{
+  (function(){
+  var d = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');      // dibuat di tombol Next slide awal
+  if (!el) {
+    // fallback kalau user masuk langsung ke slide ini (jarang)
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(e){ /* autoplay blocked? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
+}
+
+function Script2()
 {
   (function(){
   var p = GetPlayer();
@@ -108,7 +150,7 @@ function Script1()
 })();
 }
 
-function Script2()
+function Script3()
 {
   (function(){
   var p = GetPlayer();
@@ -153,7 +195,37 @@ function Script2()
 })();
 }
 
-function Script3()
+function Script4()
+{
+  (function(){
+  var d = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');      // dibuat di tombol Next slide awal
+  if (!el) {
+    // fallback kalau user masuk langsung ke slide ini (jarang)
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(e){ /* autoplay blocked? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
+}
+
+function Script5()
 {
   var p = GetPlayer();
 
@@ -230,7 +302,7 @@ p.SetVar("vAllValid_4", wrong.length === 0);
 p.SetVar("vWrongList_4", wrong.join(", "));
 }
 
-function Script4()
+function Script6()
 {
   var p = GetPlayer();
 
@@ -289,96 +361,6 @@ for (var i=0; i<3; i++){
 // kembalikan hasil ke Storyline
 p.SetVar("vAllValid_5", wrong.length === 0);
 p.SetVar("vWrongList_5", wrong.join(", "));
-}
-
-function Script5()
-{
-  (function(){
-  var p = GetPlayer();
-
-  // Kalau login slide sudah jalan, window._fbReady harusnya true.
-  // Tambah jaga-jaga memuat Firestore compat jika perlu:
-  function ensureFS(cb){
-    if (window._fbReady) { cb(); return; }
-    var s=document.createElement('script');
-    s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';
-    s.onload=cb; document.head.appendChild(s);
-  }
-
-  // Nama → key (pakai yang sudah diset saat login)
-  var name = (p.GetVar('vNama')||'').trim();
-  var key  = (p.GetVar('vNameKey')||name.toLowerCase());
-
-  // === daftar variabel HARUS sama dengan login ===
-  var S = window.PROGRESS_SCHEMA;
-  var boolVars = S.boolVars;
-  var textVars = S.textVars;
-
-
-  // Kumpulkan state sekarang
-  var state = {};
-  boolVars.forEach(function(k){ state[k] = !!p.GetVar(k); });
-  textVars.forEach(function(k){ state[k] = String(p.GetVar(k) || ''); });
-
-  // Mirror lokal (opsional, biar aman kalau offline)
-  try{ localStorage.setItem('state_'+key, JSON.stringify(state)); }catch(e){}
-
-  // Simpan ke Firestore
-  ensureFS(function(){
-    var db  = firebase.firestore();
-    var ref = db.collection('progress').doc(key);
-    ref.set({
-      name: name,
-      state: state,
-      updated: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge:true });
-  });
-})();
-}
-
-function Script6()
-{
-  (function(){
-  var p = GetPlayer();
-
-  // Kalau login slide sudah jalan, window._fbReady harusnya true.
-  // Tambah jaga-jaga memuat Firestore compat jika perlu:
-  function ensureFS(cb){
-    if (window._fbReady) { cb(); return; }
-    var s=document.createElement('script');
-    s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';
-    s.onload=cb; document.head.appendChild(s);
-  }
-
-  // Nama → key (pakai yang sudah diset saat login)
-  var name = (p.GetVar('vNama')||'').trim();
-  var key  = (p.GetVar('vNameKey')||name.toLowerCase());
-
-  // === daftar variabel HARUS sama dengan login ===
-  var S = window.PROGRESS_SCHEMA;
-  var boolVars = S.boolVars;
-  var textVars = S.textVars;
-
-
-  // Kumpulkan state sekarang
-  var state = {};
-  boolVars.forEach(function(k){ state[k] = !!p.GetVar(k); });
-  textVars.forEach(function(k){ state[k] = String(p.GetVar(k) || ''); });
-
-  // Mirror lokal (opsional, biar aman kalau offline)
-  try{ localStorage.setItem('state_'+key, JSON.stringify(state)); }catch(e){}
-
-  // Simpan ke Firestore
-  ensureFS(function(){
-    var db  = firebase.firestore();
-    var ref = db.collection('progress').doc(key);
-    ref.set({
-      name: name,
-      state: state,
-      updated: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge:true });
-  });
-})();
 }
 
 function Script7()
@@ -473,6 +455,96 @@ function Script8()
 
 function Script9()
 {
+  (function(){
+  var p = GetPlayer();
+
+  // Kalau login slide sudah jalan, window._fbReady harusnya true.
+  // Tambah jaga-jaga memuat Firestore compat jika perlu:
+  function ensureFS(cb){
+    if (window._fbReady) { cb(); return; }
+    var s=document.createElement('script');
+    s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';
+    s.onload=cb; document.head.appendChild(s);
+  }
+
+  // Nama → key (pakai yang sudah diset saat login)
+  var name = (p.GetVar('vNama')||'').trim();
+  var key  = (p.GetVar('vNameKey')||name.toLowerCase());
+
+  // === daftar variabel HARUS sama dengan login ===
+  var S = window.PROGRESS_SCHEMA;
+  var boolVars = S.boolVars;
+  var textVars = S.textVars;
+
+
+  // Kumpulkan state sekarang
+  var state = {};
+  boolVars.forEach(function(k){ state[k] = !!p.GetVar(k); });
+  textVars.forEach(function(k){ state[k] = String(p.GetVar(k) || ''); });
+
+  // Mirror lokal (opsional, biar aman kalau offline)
+  try{ localStorage.setItem('state_'+key, JSON.stringify(state)); }catch(e){}
+
+  // Simpan ke Firestore
+  ensureFS(function(){
+    var db  = firebase.firestore();
+    var ref = db.collection('progress').doc(key);
+    ref.set({
+      name: name,
+      state: state,
+      updated: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge:true });
+  });
+})();
+}
+
+function Script10()
+{
+  (function(){
+  var p = GetPlayer();
+
+  // Kalau login slide sudah jalan, window._fbReady harusnya true.
+  // Tambah jaga-jaga memuat Firestore compat jika perlu:
+  function ensureFS(cb){
+    if (window._fbReady) { cb(); return; }
+    var s=document.createElement('script');
+    s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';
+    s.onload=cb; document.head.appendChild(s);
+  }
+
+  // Nama → key (pakai yang sudah diset saat login)
+  var name = (p.GetVar('vNama')||'').trim();
+  var key  = (p.GetVar('vNameKey')||name.toLowerCase());
+
+  // === daftar variabel HARUS sama dengan login ===
+  var S = window.PROGRESS_SCHEMA;
+  var boolVars = S.boolVars;
+  var textVars = S.textVars;
+
+
+  // Kumpulkan state sekarang
+  var state = {};
+  boolVars.forEach(function(k){ state[k] = !!p.GetVar(k); });
+  textVars.forEach(function(k){ state[k] = String(p.GetVar(k) || ''); });
+
+  // Mirror lokal (opsional, biar aman kalau offline)
+  try{ localStorage.setItem('state_'+key, JSON.stringify(state)); }catch(e){}
+
+  // Simpan ke Firestore
+  ensureFS(function(){
+    var db  = firebase.firestore();
+    var ref = db.collection('progress').doc(key);
+    ref.set({
+      name: name,
+      state: state,
+      updated: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge:true });
+  });
+})();
+}
+
+function Script11()
+{
   var p = GetPlayer();
 
 /* ======== ANSWER KEY (EDIT DI SINI) ======== */
@@ -560,7 +632,7 @@ p.SetVar("vAllValid_1", wrong.length === 0);
 p.SetVar("vWrongList_1", wrong.join(", "));
 }
 
-function Script10()
+function Script12()
 {
   var p = GetPlayer();
 
@@ -635,89 +707,6 @@ p.SetVar("vAllValid_3", wrong.length === 0);
 p.SetVar("vWrongList_3", wrong.join(", "));
 }
 
-function Script11()
-{
-  (function(){
-  var p = GetPlayer();
-
-  // Kalau login slide sudah jalan, window._fbReady harusnya true.
-  // Tambah jaga-jaga memuat Firestore compat jika perlu:
-  function ensureFS(cb){
-    if (window._fbReady) { cb(); return; }
-    var s=document.createElement('script');
-    s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';
-    s.onload=cb; document.head.appendChild(s);
-  }
-
-  // Nama → key (pakai yang sudah diset saat login)
-  var name = (p.GetVar('vNama')||'').trim();
-  var key  = (p.GetVar('vNameKey')||name.toLowerCase());
-
-  // === daftar variabel HARUS sama dengan login ===
-  var S = window.PROGRESS_SCHEMA;
-  var boolVars = S.boolVars;
-  var textVars = S.textVars;
-
-
-  // Kumpulkan state sekarang
-  var state = {};
-  boolVars.forEach(function(k){ state[k] = !!p.GetVar(k); });
-  textVars.forEach(function(k){ state[k] = String(p.GetVar(k) || ''); });
-
-  // Mirror lokal (opsional, biar aman kalau offline)
-  try{ localStorage.setItem('state_'+key, JSON.stringify(state)); }catch(e){}
-
-  // Simpan ke Firestore
-  ensureFS(function(){
-    var db  = firebase.firestore();
-    var ref = db.collection('progress').doc(key);
-    ref.set({
-      name: name,
-      state: state,
-      updated: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge:true });
-  });
-})();
-}
-
-function Script12()
-{
-  var p = GetPlayer();
-
-// ambil jawaban
-var a1 = ("" + p.GetVar("vJawabanKoefisienA1"));
-var a2 = ("" + p.GetVar("vJawabanKoefisienA2"));
-
-// normalisasi: ke huruf kecil, rapikan spasi, buang tanda baca ringan
-function norm(s){
-  return s.toLowerCase()
-          .replace(/\s+/g, " ")
-          .replace(/[.,;:!?]/g, "")
-          .trim();
-}
-a1 = norm(a1);
-a2 = norm(a2);
-
-// daftar sinonim yang diterima
-var ATAS  = [/^atas$/, /\bke atas\b/, /\bkeatas\b/, /terbuka.*atas/, /membuka.*atas/, /konkaf.*atas/];
-var BAWAH = [/^bawah$/, /\bke bawah\b/, /\bkebawah\b/, /terbuka.*bawah/, /membuka.*bawah/, /konkaf.*bawah/];
-
-function matchAny(list, txt){ return list.some(rx => rx.test(txt)); }
-
-// cek masing-masing
-var ok1 = a1 !== "" && matchAny(ATAS, a1);
-var ok2 = a2 !== "" && matchAny(BAWAH, a2);
-
-// susun daftar yang salah
-var wrong = [];
-if (!ok1) wrong.push("A1");
-if (!ok2) wrong.push("A2");
-
-// kirim balik ke Storyline
-p.SetVar("vAllValid_2", wrong.length === 0);
-p.SetVar("vWrongList_2", wrong.join(", "));
-}
-
 function Script13()
 {
   (function(){
@@ -765,6 +754,114 @@ function Script13()
 
 function Script14()
 {
+  var p = GetPlayer();
+
+// ambil jawaban
+var a1 = ("" + p.GetVar("vJawabanKoefisienA1"));
+var a2 = ("" + p.GetVar("vJawabanKoefisienA2"));
+
+// normalisasi: ke huruf kecil, rapikan spasi, buang tanda baca ringan
+function norm(s){
+  return s.toLowerCase()
+          .replace(/\s+/g, " ")
+          .replace(/[.,;:!?]/g, "")
+          .trim();
+}
+a1 = norm(a1);
+a2 = norm(a2);
+
+// daftar sinonim yang diterima
+var ATAS  = [/^atas$/, /\bke atas\b/, /\bkeatas\b/, /terbuka.*atas/, /membuka.*atas/, /konkaf.*atas/];
+var BAWAH = [/^bawah$/, /\bke bawah\b/, /\bkebawah\b/, /terbuka.*bawah/, /membuka.*bawah/, /konkaf.*bawah/];
+
+function matchAny(list, txt){ return list.some(rx => rx.test(txt)); }
+
+// cek masing-masing
+var ok1 = a1 !== "" && matchAny(ATAS, a1);
+var ok2 = a2 !== "" && matchAny(BAWAH, a2);
+
+// susun daftar yang salah
+var wrong = [];
+if (!ok1) wrong.push("A1");
+if (!ok2) wrong.push("A2");
+
+// kirim balik ke Storyline
+p.SetVar("vAllValid_2", wrong.length === 0);
+p.SetVar("vWrongList_2", wrong.join(", "));
+}
+
+function Script15()
+{
+  (function(){
+  var p = GetPlayer();
+
+  // Kalau login slide sudah jalan, window._fbReady harusnya true.
+  // Tambah jaga-jaga memuat Firestore compat jika perlu:
+  function ensureFS(cb){
+    if (window._fbReady) { cb(); return; }
+    var s=document.createElement('script');
+    s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';
+    s.onload=cb; document.head.appendChild(s);
+  }
+
+  // Nama → key (pakai yang sudah diset saat login)
+  var name = (p.GetVar('vNama')||'').trim();
+  var key  = (p.GetVar('vNameKey')||name.toLowerCase());
+
+  // === daftar variabel HARUS sama dengan login ===
+  var S = window.PROGRESS_SCHEMA;
+  var boolVars = S.boolVars;
+  var textVars = S.textVars;
+
+
+  // Kumpulkan state sekarang
+  var state = {};
+  boolVars.forEach(function(k){ state[k] = !!p.GetVar(k); });
+  textVars.forEach(function(k){ state[k] = String(p.GetVar(k) || ''); });
+
+  // Mirror lokal (opsional, biar aman kalau offline)
+  try{ localStorage.setItem('state_'+key, JSON.stringify(state)); }catch(e){}
+
+  // Simpan ke Firestore
+  ensureFS(function(){
+    var db  = firebase.firestore();
+    var ref = db.collection('progress').doc(key);
+    ref.set({
+      name: name,
+      state: state,
+      updated: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge:true });
+  });
+})();
+}
+
+function Script16()
+{
+  (function(){
+  window.PROGRESS_SCHEMA = {
+    boolVars: [
+      'vMateri1','vMateri2','vMateri2a','vMateri2c','vMateri3','vMateri4','vMateri5'
+      // taruh variabel boolean baru di sini, mis. 'vMateri6'
+    ],
+    textVars: [
+      // Diskriminan
+      'vTabelDiskriminan11','vTabelDiskriminan12','vTabelDiskriminan21','vTabelDiskriminan22','vTabelDiskriminan31','vTabelDiskriminan32',
+      // Koefisien A
+      'vTabelKoefisienA11','vTabelKoefisienA12','vTabelKoefisienA21','vTabelKoefisienA22','vTabelKoefisienA31','vTabelKoefisienA32','vTabelKoefisienA41','vTabelKoefisienA42',
+      // Koefisien C
+      'vTabelKoefisienC11','vTabelKoefisienC12','vTabelKoefisienC21','vTabelKoefisienC22','vTabelKoefisienC31','vTabelKoefisienC32',
+      // Jawaban & kesimpulan
+      'vJawabanDiskriminan1','vJawabanDiskriminan2','vJawabanDiskriminan3',
+      'vJawabanKoefisienA1','vJawabanKoefisienA2',
+      'vKesimpulanDiskriminan','vKesimpulanKoefisienA','vKesimpulanKoefisienC'
+      // taruh variabel text baru di sini, mis. 'vCatatanTambahan'
+    ]
+  };
+})();
+}
+
+function Script17()
+{
   (function () {
   var URL = "https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3"; // ganti URL kamu
   var d = (window.top && window.top.document) ? window.top.document : document;
@@ -794,7 +891,37 @@ function Script14()
 
 }
 
-function Script15()
+function Script18()
+{
+  (function(){
+  var d = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');      // dibuat di tombol Next slide awal
+  if (!el) {
+    // fallback kalau user masuk langsung ke slide ini (jarang)
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(e){ /* autoplay blocked? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
+}
+
+function Script19()
 {
   (function(){
   var p = GetPlayer();
