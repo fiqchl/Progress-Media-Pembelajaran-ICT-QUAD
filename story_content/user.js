@@ -2,62 +2,65 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "5tiLfGN9zlZ":
+      case "66GO4MV8msI":
         Script1();
         break;
-      case "6VqVypU9dY7":
+      case "5uYEIkYz2Cp":
         Script2();
         break;
-      case "6WiIsX1sHvR":
+      case "6gOQNsDWUnl":
         Script3();
         break;
-      case "5vJCTEFjfFm":
+      case "6HAgKkaW6CG":
         Script4();
         break;
-      case "6cJcCUS1upL":
+      case "6I7gyEZHhNh":
         Script5();
         break;
-      case "6UaHOSBY1q0":
+      case "6kaUEtLoeSM":
         Script6();
         break;
-      case "5k3T7uJmkh7":
+      case "5dO8cvBsfzz":
         Script7();
         break;
-      case "6auasYaRtZq":
+      case "6Snq9ybRh0k":
         Script8();
         break;
-      case "6PmMk6cJI5P":
+      case "6Yu6DOYxF6y":
         Script9();
         break;
-      case "6KeHXWtUFpi":
+      case "65r1kucq07q":
         Script10();
         break;
-      case "5wT7blYvsEm":
+      case "5nI3Egn4SwY":
         Script11();
         break;
-      case "5aGDJxcEeMN":
+      case "5g5PyEDRwkd":
         Script12();
         break;
-      case "65pCRToFPgD":
+      case "6l4NN5JyMTl":
         Script13();
         break;
-      case "6LR55LWO7pY":
+      case "6QdJhZUEUWh":
         Script14();
         break;
-      case "6iJxfPbftCe":
+      case "5mu1zRdrSCn":
         Script15();
         break;
-      case "6SjDCkdYVtL":
+      case "6hWxPwCxmC6":
         Script16();
         break;
-      case "5WF9eUTDIib":
+      case "6E4bea1JkIO":
         Script17();
         break;
-      case "6qQq7NzkX2R":
+      case "5fgvlqTREJI":
         Script18();
         break;
-      case "5k8K6okUP6v":
+      case "6GXj3aqMvKP":
         Script19();
+        break;
+      case "5xDYXBArPg5":
+        Script20();
         break;
   }
 }
@@ -889,15 +892,17 @@ function Script17()
   }
 })();
 
+GetPlayer().SetVar('vBGMOn', true);   // audio dianggap ON setelah play pertama
 }
 
 function Script18()
 {
   (function(){
-  var d = (window.top && window.top.document) ? window.top.document : document;
-  var el = d.getElementById('bgmAudioGlobal');      // dibuat di tombol Next slide awal
+  var d  = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');
+
+  // Jika audio global belum ada (mis. user lompat slide), buat:
   if (!el) {
-    // fallback kalau user masuk langsung ke slide ini (jarang)
     el = d.createElement('audio');
     el.id = 'bgmAudioGlobal';
     el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
@@ -913,7 +918,7 @@ function Script18()
     if (on) {
       el.muted = false;
       var p = el.play();
-      if (p && p.catch) p.catch(function(e){ /* autoplay blocked? klik berikutnya akan jalan */ });
+      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
     } else {
       el.pause();
     }
@@ -922,6 +927,37 @@ function Script18()
 }
 
 function Script19()
+{
+  (function(){
+  var d  = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');
+
+  // Jika audio global belum ada (mis. user lompat slide), buat:
+  if (!el) {
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
+}
+
+function Script20()
 {
   (function(){
   var p = GetPlayer();
