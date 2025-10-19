@@ -2,65 +2,68 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "66GO4MV8msI":
+      case "6IL0IEPUV5F":
         Script1();
         break;
-      case "5uYEIkYz2Cp":
+      case "5cGefs8GC5H":
         Script2();
         break;
-      case "6gOQNsDWUnl":
+      case "5zvbWJI70pn":
         Script3();
         break;
-      case "6HAgKkaW6CG":
+      case "60rFJCfc3V3":
         Script4();
         break;
-      case "6I7gyEZHhNh":
+      case "6gtf7JRUaOR":
         Script5();
         break;
-      case "6kaUEtLoeSM":
+      case "64d26lVErkq":
         Script6();
         break;
-      case "5dO8cvBsfzz":
+      case "5wJKxeMbT8C":
         Script7();
         break;
-      case "6Snq9ybRh0k":
+      case "5Yxa1jPjD8i":
         Script8();
         break;
-      case "6Yu6DOYxF6y":
+      case "619kw2PXtzj":
         Script9();
         break;
-      case "65r1kucq07q":
+      case "6MuuKIJENXH":
         Script10();
         break;
-      case "5nI3Egn4SwY":
+      case "6qAjcznjdsU":
         Script11();
         break;
-      case "5g5PyEDRwkd":
+      case "5haHPhSeQiV":
         Script12();
         break;
-      case "6l4NN5JyMTl":
+      case "5kJKi4UaUWK":
         Script13();
         break;
-      case "6QdJhZUEUWh":
+      case "6a32Tib5CnE":
         Script14();
         break;
-      case "5mu1zRdrSCn":
+      case "68WIjfOixeT":
         Script15();
         break;
-      case "6hWxPwCxmC6":
+      case "5rXwyE0IqEK":
         Script16();
         break;
-      case "6E4bea1JkIO":
+      case "5mZSBxlQTcM":
         Script17();
         break;
-      case "5fgvlqTREJI":
+      case "5bEDhkL6Ytf":
         Script18();
         break;
-      case "6GXj3aqMvKP":
+      case "6LmYXmJvBYG":
         Script19();
         break;
-      case "5xDYXBArPg5":
+      case "67XWKTvqQxY":
         Script20();
+        break;
+      case "68Yq7fVCJze":
+        Script21();
         break;
   }
 }
@@ -156,6 +159,36 @@ function Script2()
 function Script3()
 {
   (function(){
+  var d = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');      // dibuat di tombol Next slide awal
+  if (!el) {
+    // fallback kalau user masuk langsung ke slide ini (jarang)
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(e){ /* autoplay blocked? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
+}
+
+function Script4()
+{
+  (function(){
   var p = GetPlayer();
 
   // Kalau login slide sudah jalan, window._fbReady harusnya true.
@@ -198,7 +231,7 @@ function Script3()
 })();
 }
 
-function Script4()
+function Script5()
 {
   (function(){
   var d = (window.top && window.top.document) ? window.top.document : document;
@@ -228,7 +261,7 @@ function Script4()
 })();
 }
 
-function Script5()
+function Script6()
 {
   var p = GetPlayer();
 
@@ -305,7 +338,7 @@ p.SetVar("vAllValid_4", wrong.length === 0);
 p.SetVar("vWrongList_4", wrong.join(", "));
 }
 
-function Script6()
+function Script7()
 {
   var p = GetPlayer();
 
@@ -364,51 +397,6 @@ for (var i=0; i<3; i++){
 // kembalikan hasil ke Storyline
 p.SetVar("vAllValid_5", wrong.length === 0);
 p.SetVar("vWrongList_5", wrong.join(", "));
-}
-
-function Script7()
-{
-  (function(){
-  var p = GetPlayer();
-
-  // Kalau login slide sudah jalan, window._fbReady harusnya true.
-  // Tambah jaga-jaga memuat Firestore compat jika perlu:
-  function ensureFS(cb){
-    if (window._fbReady) { cb(); return; }
-    var s=document.createElement('script');
-    s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';
-    s.onload=cb; document.head.appendChild(s);
-  }
-
-  // Nama → key (pakai yang sudah diset saat login)
-  var name = (p.GetVar('vNama')||'').trim();
-  var key  = (p.GetVar('vNameKey')||name.toLowerCase());
-
-  // === daftar variabel HARUS sama dengan login ===
-  var S = window.PROGRESS_SCHEMA;
-  var boolVars = S.boolVars;
-  var textVars = S.textVars;
-
-
-  // Kumpulkan state sekarang
-  var state = {};
-  boolVars.forEach(function(k){ state[k] = !!p.GetVar(k); });
-  textVars.forEach(function(k){ state[k] = String(p.GetVar(k) || ''); });
-
-  // Mirror lokal (opsional, biar aman kalau offline)
-  try{ localStorage.setItem('state_'+key, JSON.stringify(state)); }catch(e){}
-
-  // Simpan ke Firestore
-  ensureFS(function(){
-    var db  = firebase.firestore();
-    var ref = db.collection('progress').doc(key);
-    ref.set({
-      name: name,
-      state: state,
-      updated: firebase.firestore.FieldValue.serverTimestamp()
-    }, { merge:true });
-  });
-})();
 }
 
 function Script8()
@@ -548,6 +536,51 @@ function Script10()
 
 function Script11()
 {
+  (function(){
+  var p = GetPlayer();
+
+  // Kalau login slide sudah jalan, window._fbReady harusnya true.
+  // Tambah jaga-jaga memuat Firestore compat jika perlu:
+  function ensureFS(cb){
+    if (window._fbReady) { cb(); return; }
+    var s=document.createElement('script');
+    s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';
+    s.onload=cb; document.head.appendChild(s);
+  }
+
+  // Nama → key (pakai yang sudah diset saat login)
+  var name = (p.GetVar('vNama')||'').trim();
+  var key  = (p.GetVar('vNameKey')||name.toLowerCase());
+
+  // === daftar variabel HARUS sama dengan login ===
+  var S = window.PROGRESS_SCHEMA;
+  var boolVars = S.boolVars;
+  var textVars = S.textVars;
+
+
+  // Kumpulkan state sekarang
+  var state = {};
+  boolVars.forEach(function(k){ state[k] = !!p.GetVar(k); });
+  textVars.forEach(function(k){ state[k] = String(p.GetVar(k) || ''); });
+
+  // Mirror lokal (opsional, biar aman kalau offline)
+  try{ localStorage.setItem('state_'+key, JSON.stringify(state)); }catch(e){}
+
+  // Simpan ke Firestore
+  ensureFS(function(){
+    var db  = firebase.firestore();
+    var ref = db.collection('progress').doc(key);
+    ref.set({
+      name: name,
+      state: state,
+      updated: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge:true });
+  });
+})();
+}
+
+function Script12()
+{
   var p = GetPlayer();
 
 /* ======== ANSWER KEY (EDIT DI SINI) ======== */
@@ -635,7 +668,7 @@ p.SetVar("vAllValid_1", wrong.length === 0);
 p.SetVar("vWrongList_1", wrong.join(", "));
 }
 
-function Script12()
+function Script13()
 {
   var p = GetPlayer();
 
@@ -710,7 +743,7 @@ p.SetVar("vAllValid_3", wrong.length === 0);
 p.SetVar("vWrongList_3", wrong.join(", "));
 }
 
-function Script13()
+function Script14()
 {
   (function(){
   var p = GetPlayer();
@@ -755,7 +788,7 @@ function Script13()
 })();
 }
 
-function Script14()
+function Script15()
 {
   var p = GetPlayer();
 
@@ -793,7 +826,7 @@ p.SetVar("vAllValid_2", wrong.length === 0);
 p.SetVar("vWrongList_2", wrong.join(", "));
 }
 
-function Script15()
+function Script16()
 {
   (function(){
   var p = GetPlayer();
@@ -838,7 +871,7 @@ function Script15()
 })();
 }
 
-function Script16()
+function Script17()
 {
   (function(){
   window.PROGRESS_SCHEMA = {
@@ -863,7 +896,7 @@ function Script16()
 })();
 }
 
-function Script17()
+function Script18()
 {
   (function () {
   var URL = "https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3"; // ganti URL kamu
@@ -893,37 +926,6 @@ function Script17()
 })();
 
 GetPlayer().SetVar('vBGMOn', true);   // audio dianggap ON setelah play pertama
-}
-
-function Script18()
-{
-  (function(){
-  var d  = (window.top && window.top.document) ? window.top.document : document;
-  var el = d.getElementById('bgmAudioGlobal');
-
-  // Jika audio global belum ada (mis. user lompat slide), buat:
-  if (!el) {
-    el = d.createElement('audio');
-    el.id = 'bgmAudioGlobal';
-    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
-    el.loop = true;
-    el.volume = 0.5;
-    el.preload = 'auto';
-    el.setAttribute('playsinline','');
-    d.body.appendChild(el);
-  }
-
-  var on = !!GetPlayer().GetVar('vBGMOn');
-  try {
-    if (on) {
-      el.muted = false;
-      var p = el.play();
-      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
-    } else {
-      el.pause();
-    }
-  } catch(e){}
-})();
 }
 
 function Script19()
@@ -958,6 +960,37 @@ function Script19()
 }
 
 function Script20()
+{
+  (function(){
+  var d  = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');
+
+  // Jika audio global belum ada (mis. user lompat slide), buat:
+  if (!el) {
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
+}
+
+function Script21()
 {
   (function(){
   var p = GetPlayer();
