@@ -2,68 +2,74 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6EhlDnO33UD":
+      case "5iRsgmSfFlN":
         Script1();
         break;
-      case "5p4Xg9Kn9L6":
+      case "6NX8RGEiKSK":
         Script2();
         break;
-      case "6dllUNsOJC3":
+      case "68uNW9xWH6a":
         Script3();
         break;
-      case "61PP7B3oy5J":
+      case "5iqGhyOYDmJ":
         Script4();
         break;
-      case "6QjguwnWWjR":
+      case "62K3595S3kX":
         Script5();
         break;
-      case "6UALPAxJbGE":
+      case "6KEH5mpD2cI":
         Script6();
         break;
-      case "5ccLaaNovpl":
+      case "5nSsaCZ0wn6":
         Script7();
         break;
-      case "5Xq7pPhjwuf":
+      case "6Qo0wOGGQQk":
         Script8();
         break;
-      case "6FI3Egjw66I":
+      case "5tWpDpBIeeZ":
         Script9();
         break;
-      case "6YEqYstShEZ":
+      case "6jke0WUxEW9":
         Script10();
         break;
-      case "6EtZyeNhDIe":
+      case "6eVuqDU1fDM":
         Script11();
         break;
-      case "6DLdkcCzA5r":
+      case "6SG6y4KriKm":
         Script12();
         break;
-      case "6Nhqh5gTeGo":
+      case "6oEzaUaJIqc":
         Script13();
         break;
-      case "6XslCmvUvT2":
+      case "5wPNbJiqdvL":
         Script14();
         break;
-      case "6XasHKTH9Bu":
+      case "5XanPxRqzlS":
         Script15();
         break;
-      case "6p4Yq8pEPfj":
+      case "6UiYcCnZ1xz":
         Script16();
         break;
-      case "6FFgr4GoDyH":
+      case "6q5Q45kBxHb":
         Script17();
         break;
-      case "6cnyBMf6qrW":
+      case "5aGLg0V6Egy":
         Script18();
         break;
-      case "6Uq6zntqZRG":
+      case "5k46Vi0tZ7X":
         Script19();
         break;
-      case "5uTRBAJdBWj":
+      case "5ggZhjENQto":
         Script20();
         break;
-      case "67PugP4y1hB":
+      case "6RQKdEN08Iw":
         Script21();
+        break;
+      case "6VgycVCXpMo":
+        Script22();
+        break;
+      case "5kRfG2ZaB6Q":
+        Script23();
         break;
   }
 }
@@ -873,6 +879,93 @@ function Script16()
 
 function Script17()
 {
+  var p = GetPlayer();
+
+// util bantu normalisasi
+function normSpaces(s){ return (s||"").toString().toLowerCase().replace(/\s+/g, " ").trim(); }
+function normTight(s){ return (s||"").toString().toLowerCase().replace(/\s+/g, "").trim(); }
+
+// --- ambil jawaban user ---
+var t1 = p.GetVar("vGame221"); // "bawah", "ke bawah", "kebawah", dst.
+var t2 = p.GetVar("vGame222"); // "0,3", "(0,3)", "0.3", "0,30", dst.
+
+// --- validasi vGame221: arah bawah (terima variasi "ke bawah", "kebawah", dsb.) ---
+var s1 = normSpaces(t1);
+var ok221 = false;
+// cukup mengandung kata 'bawah' (akan meliputi "ke bawah", "kebawah")
+if (s1.indexOf("bawah") >= 0) ok221 = true;
+
+// (opsional) tambahkan sinonim lain jika mau:
+// if (s1.indexOf("turun") >= 0) ok221 = true;
+
+// --- validasi vGame222: 0,3 (boleh titik/koma, boleh bertanda kurung, 0,30 juga diterima) ---
+var s2 = normTight(t2);
+// buang tanda kurung pembungkus bila ada
+if (/^\(.*\)$/.test(s2)) s2 = s2.slice(1, -1);
+// samakan desimal: koma -> titik
+s2 = s2.replace(",", ".");
+
+// terima: "0.3", "0.30", "0.300", dst (tanpa karakter lain)
+var ok222 = /^0\.3(0*)$/.test(s2);
+
+// --- set boolean hasil gabungan ---
+p.SetVar("vGame22", (ok221 && ok222) ? true : false);
+}
+
+function Script18()
+{
+  var p = GetPlayer();
+function n(v){ return (v||"").toString().trim().toLowerCase(); }
+function any(v, arr){ v = n(v); return arr.map(n).indexOf(v) >= 0; }
+
+// Ambil 9 jawaban (nama variabel sesuai punyamu)
+var a1 = p.GetVar("vGame12a1");
+var a2 = p.GetVar("vGame12a2");
+var a3 = p.GetVar("vGame12a3");
+var b1 = p.GetVar("vGame12b1");
+var b2 = p.GetVar("vGame12b2");
+var b3 = p.GetVar("vGame12b3");
+var c1 = p.GetVar("vGame12c1");
+var c2 = p.GetVar("vGame12c2");
+var c3 = p.GetVar("vGame12c3");
+
+// ------ KUNCI JAWABAN ------
+var key = {
+  vGame12a1: ["1"],
+  vGame12a2: ["1"],
+  vGame12a3: ["5"],
+  vGame12b1: ["1"],
+  vGame12b2: ["0"],
+  vGame12b3: ["5"],
+  vGame12c1: ["0"],
+  vGame12c2: ["-4"],
+  vGame12c3: ["-5"]
+};
+
+// Cek semua benar (case-insensitive, trim spasi pinggir)
+var ok =
+  any(a1, key.vGame12a1) &&
+  any(a2, key.vGame12a2) &&
+  any(a3, key.vGame12a3) &&
+  any(b1, key.vGame12b1) &&
+  any(b2, key.vGame12b2) &&
+  any(b3, key.vGame12b3) &&
+  any(c1, key.vGame12c1) &&
+  any(c2, key.vGame12c2) &&
+  any(c3, key.vGame12c3);
+
+// (Opsional) anggap salah jika ada yang kosong
+function isEmpty(v){ return n(v).length === 0; }
+if ( isEmpty(a1)||isEmpty(a2)||isEmpty(a3)||isEmpty(b1)||isEmpty(b2)||isEmpty(b3)||isEmpty(c1)||isEmpty(c2)||isEmpty(c3) ){
+  ok = false;
+}
+
+// Set boolean hasil Q2
+p.SetVar("vGame12", ok ? true : false);
+}
+
+function Script19()
+{
   (function(){
   window.PROGRESS_SCHEMA = {
     boolVars: [
@@ -897,7 +990,7 @@ function Script17()
 })();
 }
 
-function Script18()
+function Script20()
 {
   (function () {
   var URL = "https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3"; // ganti URL kamu
@@ -929,69 +1022,69 @@ function Script18()
 GetPlayer().SetVar('vBGMOn', true);   // audio dianggap ON setelah play pertama
 }
 
-function Script19()
-{
-  (function(){
-  var d  = (window.top && window.top.document) ? window.top.document : document;
-  var el = d.getElementById('bgmAudioGlobal');
-
-  // Jika audio global belum ada (mis. user lompat slide), buat:
-  if (!el) {
-    el = d.createElement('audio');
-    el.id = 'bgmAudioGlobal';
-    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
-    el.loop = true;
-    el.volume = 0.5;
-    el.preload = 'auto';
-    el.setAttribute('playsinline','');
-    d.body.appendChild(el);
-  }
-
-  var on = !!GetPlayer().GetVar('vBGMOn');
-  try {
-    if (on) {
-      el.muted = false;
-      var p = el.play();
-      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
-    } else {
-      el.pause();
-    }
-  } catch(e){}
-})();
-}
-
-function Script20()
-{
-  (function(){
-  var d  = (window.top && window.top.document) ? window.top.document : document;
-  var el = d.getElementById('bgmAudioGlobal');
-
-  // Jika audio global belum ada (mis. user lompat slide), buat:
-  if (!el) {
-    el = d.createElement('audio');
-    el.id = 'bgmAudioGlobal';
-    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
-    el.loop = true;
-    el.volume = 0.5;
-    el.preload = 'auto';
-    el.setAttribute('playsinline','');
-    d.body.appendChild(el);
-  }
-
-  var on = !!GetPlayer().GetVar('vBGMOn');
-  try {
-    if (on) {
-      el.muted = false;
-      var p = el.play();
-      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
-    } else {
-      el.pause();
-    }
-  } catch(e){}
-})();
-}
-
 function Script21()
+{
+  (function(){
+  var d  = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');
+
+  // Jika audio global belum ada (mis. user lompat slide), buat:
+  if (!el) {
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
+}
+
+function Script22()
+{
+  (function(){
+  var d  = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');
+
+  // Jika audio global belum ada (mis. user lompat slide), buat:
+  if (!el) {
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
+}
+
+function Script23()
 {
   (function(){
   var p = GetPlayer();
