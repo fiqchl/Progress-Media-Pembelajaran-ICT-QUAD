@@ -2,67 +2,67 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6byKxkCp1pl":
+      case "5oDkUMqzOvz":
         Script1();
         break;
-      case "6oL5utrxU1g":
+      case "6LABn7laLfq":
         Script2();
         break;
-      case "6AQ0bGCSsHc":
+      case "5r4TtOSet6o":
         Script3();
         break;
-      case "6apPRd7EH4I":
+      case "5fKS1CJRT3n":
         Script4();
         break;
-      case "6kRuTFQtZTj":
+      case "6j2dlLIL9vM":
         Script5();
         break;
-      case "6ZjTUlXVQLK":
+      case "5vIbfPMn7u1":
         Script6();
         break;
-      case "6a8m6WjNEuK":
+      case "5neorDDzVs2":
         Script7();
         break;
-      case "6JSyVj6AqDJ":
+      case "6dBKHEhOqMc":
         Script8();
         break;
-      case "5WDvdllDpHJ":
+      case "6ncCqlobyJU":
         Script9();
         break;
-      case "6L8p3Zq62oc":
+      case "5l2K6M6y844":
         Script10();
         break;
-      case "5rxntog7VRi":
+      case "6guoem0c8DI":
         Script11();
         break;
-      case "6X1ZvNSQDeI":
+      case "640zt8GcH3D":
         Script12();
         break;
-      case "6Os8BLrdGFC":
+      case "5b4t7FqG2xE":
         Script13();
         break;
-      case "5dZWlB2OT4Q":
+      case "607rqalkBb9":
         Script14();
         break;
-      case "6r84VeuJdlN":
+      case "60EVVPtvE4y":
         Script15();
         break;
-      case "6NAPBU3D6T7":
+      case "5b9kdTRqlHG":
         Script16();
         break;
-      case "6ieulD1QI7H":
+      case "6SildBHOCdC":
         Script17();
         break;
-      case "5buUqKUXS7V":
+      case "6PXW2UjfMT1":
         Script18();
         break;
-      case "5nVtQesqmJC":
+      case "5WpJJ7AIglw":
         Script19();
         break;
-      case "6O8PQXhtway":
+      case "6FkdWH92hdi":
         Script20();
         break;
-      case "66ZIc3HY41B":
+      case "6DBapSNGbDw":
         Script21();
         break;
   }
@@ -889,8 +889,9 @@ function Script17()
       // Jawaban & kesimpulan
       'vJawabanDiskriminan1','vJawabanDiskriminan2','vJawabanDiskriminan3',
       'vJawabanKoefisienA1','vJawabanKoefisienA2',
-      'vKesimpulanDiskriminan','vKesimpulanKoefisienA','vKesimpulanKoefisienC'
+      'vKesimpulanDiskriminan','vKesimpulanKoefisienA','vKesimpulanKoefisienC',
       // taruh variabel text baru di sini, mis. 'vCatatanTambahan'
+      'vNilaiFungsi1','vNilaiFungsi2'
     ]
   };
 })();
