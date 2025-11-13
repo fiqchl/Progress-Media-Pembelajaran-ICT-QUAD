@@ -2,77 +2,83 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "5oBETA8YEUv":
+      case "5hZ8lBTSjhw":
         Script1();
         break;
-      case "6Fq3lyxp5UK":
+      case "5Xzejhh3BiI":
         Script2();
         break;
-      case "5iMOtV5d64W":
+      case "6rCW9vh5Q7x":
         Script3();
         break;
-      case "6eGTVI1SuHN":
+      case "6Rlp7vM0Woq":
         Script4();
         break;
-      case "6JcVCK2Ur1X":
+      case "6aHL2ybGeND":
         Script5();
         break;
-      case "65BkdBdwDgy":
+      case "6mO0X899NMO":
         Script6();
         break;
-      case "6kTec5UMjVc":
+      case "5rZrfocpv1f":
         Script7();
         break;
-      case "67kETLCWI6W":
+      case "5qCosN68rWG":
         Script8();
         break;
-      case "5olisMrWdxR":
+      case "63ZWx869o41":
         Script9();
         break;
-      case "5p5NLAAzqWQ":
+      case "5WdYfEhc0LS":
         Script10();
         break;
-      case "5zDHAKw3uVv":
+      case "5wdhbXjvP3T":
         Script11();
         break;
-      case "6b8x7zoObXp":
+      case "5bU9jDF7nql":
         Script12();
         break;
-      case "5YcMDtN6UPs":
+      case "5rsIUSGvcXZ":
         Script13();
         break;
-      case "5XiEBHvr3f4":
+      case "6dYxLLYz6A7":
         Script14();
         break;
-      case "5aoNK7EOEAR":
+      case "6A2NzkjU9nR":
         Script15();
         break;
-      case "6IOePXaHZ4G":
+      case "6ntTynUGoTp":
         Script16();
         break;
-      case "5c8oSu3BO0a":
+      case "6aBQiDJpHGU":
         Script17();
         break;
-      case "5luL1hb7DvK":
+      case "6GsovysNeZZ":
         Script18();
         break;
-      case "5nMJEQ1hFip":
+      case "6TBaMHmE4tB":
         Script19();
         break;
-      case "5xaAr5tiHGn":
+      case "5bvNuZnyy7u":
         Script20();
         break;
-      case "5u0jDb3hKr0":
+      case "5iFn7FKxfQ1":
         Script21();
         break;
-      case "5uwqAfd3hC5":
+      case "5ww3LKzLYtm":
         Script22();
         break;
-      case "6UM1BsBxFqk":
+      case "5mqT3aGHdWd":
         Script23();
         break;
-      case "6R75BtRrSrt":
+      case "6WwqMBGEu1a":
         Script24();
+        break;
+      case "6TPj85LD6m9":
+        Script25();
+        break;
+      case "69WouL7cDRA":
+        Script26();
         break;
   }
 }
@@ -971,6 +977,52 @@ function Script19()
 {
   var p = GetPlayer();
 
+// kosongkan semua jawaban
+["vQuiz1","vQuiz2","vQuiz3","vQuiz4","vQuiz5",
+ "vQuiz6","vQuiz7","vQuiz8","vQuiz9","vQuiz10"
+].forEach(function(n){ p.SetVar(n, ""); });
+
+// reset hasil
+p.SetVar("vTotalbenar", 0);
+p.SetVar("vNilai", 0);
+
+// (opsional) kalau kamu pakai variabel ringkasan lain, ikut kosongkan:
+try { p.SetVar("WrongList",""); } catch(e){}
+try { p.SetVar("FirstWrong",""); } catch(e){}
+try { p.SetVar("debugMsg",""); } catch(e){}
+
+// (opsional) jika kamu punya flag per-soal untuk ikon ✅/❌, reset juga:
+// ["q1_ok","q2_ok","q3_ok","q4_ok","q5_ok","s1_ok","s2_ok","s3_ok","s4_ok","s5_ok"]
+//   .forEach(function(n){ try { p.SetVar(n, false); } catch(e){} });
+}
+
+function Script20()
+{
+  var p = GetPlayer();
+
+// kosongkan semua jawaban
+["vQuiz1","vQuiz2","vQuiz3","vQuiz4","vQuiz5",
+ "vQuiz6","vQuiz7","vQuiz8","vQuiz9","vQuiz10"
+].forEach(function(n){ p.SetVar(n, ""); });
+
+// reset hasil
+p.SetVar("vTotalbenar", 0);
+p.SetVar("vNilai", 0);
+
+// (opsional) kalau kamu pakai variabel ringkasan lain, ikut kosongkan:
+try { p.SetVar("WrongList",""); } catch(e){}
+try { p.SetVar("FirstWrong",""); } catch(e){}
+try { p.SetVar("debugMsg",""); } catch(e){}
+
+// (opsional) jika kamu punya flag per-soal untuk ikon ✅/❌, reset juga:
+// ["q1_ok","q2_ok","q3_ok","q4_ok","q5_ok","s1_ok","s2_ok","s3_ok","s4_ok","s5_ok"]
+//   .forEach(function(n){ try { p.SetVar(n, false); } catch(e){} });
+}
+
+function Script21()
+{
+  var p = GetPlayer();
+
 // --- ambil jawaban dari Storyline ---
 function get(name){ return (p.GetVar(name) || "").toString().trim(); }
 function up(v){ return v.toUpperCase(); }
@@ -1049,11 +1101,11 @@ if (anyEq(v9,  KEY_TXT.vQuiz9))  total++;
 if (anyEq(v10, KEY_TXT.vQuiz10)) total++;
 
 // --- set hasil ke variabel Storyline ---
-p.SetVar("vTotalbenar", total);
+p.SetVar("vTotalBenar", total);
 p.SetVar("vNilai", total * 10); // 10 poin per soal (maks 100)
 }
 
-function Script20()
+function Script22()
 {
   (function(){
   window.PROGRESS_SCHEMA = {
@@ -1079,7 +1131,7 @@ function Script20()
 })();
 }
 
-function Script21()
+function Script23()
 {
   (function () {
   var URL = "https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3"; // ganti URL kamu
@@ -1111,69 +1163,69 @@ function Script21()
 GetPlayer().SetVar('vBGMOn', true);   // audio dianggap ON setelah play pertama
 }
 
-function Script22()
-{
-  (function(){
-  var d  = (window.top && window.top.document) ? window.top.document : document;
-  var el = d.getElementById('bgmAudioGlobal');
-
-  // Jika audio global belum ada (mis. user lompat slide), buat:
-  if (!el) {
-    el = d.createElement('audio');
-    el.id = 'bgmAudioGlobal';
-    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
-    el.loop = true;
-    el.volume = 0.5;
-    el.preload = 'auto';
-    el.setAttribute('playsinline','');
-    d.body.appendChild(el);
-  }
-
-  var on = !!GetPlayer().GetVar('vBGMOn');
-  try {
-    if (on) {
-      el.muted = false;
-      var p = el.play();
-      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
-    } else {
-      el.pause();
-    }
-  } catch(e){}
-})();
-}
-
-function Script23()
-{
-  (function(){
-  var d  = (window.top && window.top.document) ? window.top.document : document;
-  var el = d.getElementById('bgmAudioGlobal');
-
-  // Jika audio global belum ada (mis. user lompat slide), buat:
-  if (!el) {
-    el = d.createElement('audio');
-    el.id = 'bgmAudioGlobal';
-    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
-    el.loop = true;
-    el.volume = 0.5;
-    el.preload = 'auto';
-    el.setAttribute('playsinline','');
-    d.body.appendChild(el);
-  }
-
-  var on = !!GetPlayer().GetVar('vBGMOn');
-  try {
-    if (on) {
-      el.muted = false;
-      var p = el.play();
-      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
-    } else {
-      el.pause();
-    }
-  } catch(e){}
-})();
-}
-
 function Script24()
+{
+  (function(){
+  var d  = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');
+
+  // Jika audio global belum ada (mis. user lompat slide), buat:
+  if (!el) {
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
+}
+
+function Script25()
+{
+  (function(){
+  var d  = (window.top && window.top.document) ? window.top.document : document;
+  var el = d.getElementById('bgmAudioGlobal');
+
+  // Jika audio global belum ada (mis. user lompat slide), buat:
+  if (!el) {
+    el = d.createElement('audio');
+    el.id = 'bgmAudioGlobal';
+    el.src = 'https://fiqchl.github.io/Progress-Media-Pembelajaran-ICT-QUAD/bgm/sabilulungan.mp3';
+    el.loop = true;
+    el.volume = 0.5;
+    el.preload = 'auto';
+    el.setAttribute('playsinline','');
+    d.body.appendChild(el);
+  }
+
+  var on = !!GetPlayer().GetVar('vBGMOn');
+  try {
+    if (on) {
+      el.muted = false;
+      var p = el.play();
+      if (p && p.catch) p.catch(function(){ /* autoplay block? klik berikutnya akan jalan */ });
+    } else {
+      el.pause();
+    }
+  } catch(e){}
+})();
+}
+
+function Script26()
 {
   (function(){
   var p = GetPlayer();
