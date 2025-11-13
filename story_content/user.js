@@ -2,76 +2,76 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6HDB0eSwKE4":
+      case "5oBETA8YEUv":
         Script1();
         break;
-      case "5kQxHKHhbSz":
+      case "6Fq3lyxp5UK":
         Script2();
         break;
-      case "5dMrCqB3uyQ":
+      case "5iMOtV5d64W":
         Script3();
         break;
-      case "6dXgcFGZcsG":
+      case "6eGTVI1SuHN":
         Script4();
         break;
-      case "5ns8ITMvlrK":
+      case "6JcVCK2Ur1X":
         Script5();
         break;
-      case "611ml1ST1oi":
+      case "65BkdBdwDgy":
         Script6();
         break;
-      case "5qHCow0jgMZ":
+      case "6kTec5UMjVc":
         Script7();
         break;
-      case "6V1F7d3G3bJ":
+      case "67kETLCWI6W":
         Script8();
         break;
-      case "6CMLQ11mZtV":
+      case "5olisMrWdxR":
         Script9();
         break;
-      case "6jO4g45Xuuc":
+      case "5p5NLAAzqWQ":
         Script10();
         break;
-      case "6EWjzIi1b4G":
+      case "5zDHAKw3uVv":
         Script11();
         break;
-      case "6ZrpLX8lqwR":
+      case "6b8x7zoObXp":
         Script12();
         break;
-      case "5fGUQXTRFwU":
+      case "5YcMDtN6UPs":
         Script13();
         break;
-      case "6EMVZQ6AwaL":
+      case "5XiEBHvr3f4":
         Script14();
         break;
-      case "6gieYX4q7hG":
+      case "5aoNK7EOEAR":
         Script15();
         break;
-      case "5YE6fiIA7fM":
+      case "6IOePXaHZ4G":
         Script16();
         break;
-      case "5wIoBeeLtBE":
+      case "5c8oSu3BO0a":
         Script17();
         break;
-      case "6JgjGPhX5QK":
+      case "5luL1hb7DvK":
         Script18();
         break;
-      case "6hFOofJ0GPm":
+      case "5nMJEQ1hFip":
         Script19();
         break;
-      case "6fvVv1qRLmc":
+      case "5xaAr5tiHGn":
         Script20();
         break;
-      case "6E1hJAaR7mf":
+      case "5u0jDb3hKr0":
         Script21();
         break;
-      case "5kDZ38BI2xs":
+      case "5uwqAfd3hC5":
         Script22();
         break;
-      case "6IBniDJt4UZ":
+      case "6UM1BsBxFqk":
         Script23();
         break;
-      case "6MhPIuud7Ex":
+      case "6R75BtRrSrt":
         Script24();
         break;
   }
@@ -996,7 +996,7 @@ var KEY_MC = {
   vQuiz2: "C",
   vQuiz3: "C",
   vQuiz4: "E",
-  vQuiz5: "B"
+  vQuiz5: "A"
 };
 
 // Isian singkat: daftar sinonim yang diterima per nomor
