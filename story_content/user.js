@@ -2,79 +2,79 @@ function ExecuteScript(strId)
 {
   switch (strId)
   {
-      case "6LEUcuUpDHi":
+      case "6Gx98UZpntv":
         Script1();
         break;
-      case "6gkDd7MEDUd":
+      case "5fFa49Wj8X2":
         Script2();
         break;
-      case "6eKPLbctA03":
+      case "6hztnf2dHPX":
         Script3();
         break;
-      case "5VA2bC1FZN9":
+      case "6n5MwIWR7sd":
         Script4();
         break;
-      case "6iLp9GByh3F":
+      case "5sLLasojqq9":
         Script5();
         break;
-      case "6ond8bpEmIk":
+      case "6R80G1wcnJC":
         Script6();
         break;
-      case "6a4BSyuot4S":
+      case "6Yqmzs0yF0j":
         Script7();
         break;
-      case "5dNPcw9uK4h":
+      case "602ktu83Srz":
         Script8();
         break;
-      case "6bU1GZcPh16":
+      case "6BMFiDy5Tpe":
         Script9();
         break;
-      case "5gs93egUdXw":
+      case "60oYLJzJaQt":
         Script10();
         break;
-      case "6JaUFu482kK":
+      case "5nsMVGSEEvM":
         Script11();
         break;
-      case "5VlQcZoZMu5":
+      case "5mUe8H7yAQC":
         Script12();
         break;
-      case "5fsEjenq4q8":
+      case "6kHjxs330zS":
         Script13();
         break;
-      case "6VFlDoG8VLT":
+      case "6hgwQ3S9WNj":
         Script14();
         break;
-      case "6bdqPILRQle":
+      case "6O6PQXYlu2u":
         Script15();
         break;
-      case "5oBX20JeuIr":
+      case "6kXQPGR0Gc6":
         Script16();
         break;
-      case "5vUudVZH7xW":
+      case "6SLVDIaFA0P":
         Script17();
         break;
-      case "6baCVpocJW0":
+      case "6qSopp8WZCE":
         Script18();
         break;
-      case "5zA6ivke7Zc":
+      case "6YWKuEIjeme":
         Script19();
         break;
-      case "60TUhhQjmf4":
+      case "6UObeP2MGTk":
         Script20();
         break;
-      case "62myzJMuWUA":
+      case "6bHiPZcvH9I":
         Script21();
         break;
-      case "6g6NTVKHIVL":
+      case "5stdcOvB1ef":
         Script22();
         break;
-      case "5htAkEotSFn":
+      case "6FaoibDnUrD":
         Script23();
         break;
-      case "5tKnT31xOLt":
+      case "6XDn3wR5R8k":
         Script24();
         break;
-      case "6o9lPa0DD3M":
+      case "6I1DcVeHCfY":
         Script25();
         break;
   }
@@ -1129,7 +1129,7 @@ function Script21()
   (function(){
   window.PROGRESS_SCHEMA = {
     boolVars: [
-      'vMateri1','vMateri2','vMateri2a','vMateri2c','vMateri3','vMateri4','vMateri5','vQuizDone','vGame'
+      'vMateri1','vMateri2','vMateri2a','vMateri2c','vMateri3','vMateri4','vMateri5','vQuizDone'
       // tambah boolean lain di sini
     ],
     textVars: [
